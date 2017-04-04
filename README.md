@@ -5,7 +5,7 @@ A simple file picker for Angular
 Add the package to your application.
 
 ```
-npm install --save angulare-file-picker
+npm install --save angular-file-picker
 ```
 
 # Usage
