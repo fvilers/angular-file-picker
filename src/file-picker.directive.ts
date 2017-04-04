@@ -1,7 +1,7 @@
 import { Directive, ElementRef, EventEmitter, HostListener, OnInit, Output, Renderer } from '@angular/core';
 
 @Directive({
-  selector: '[appFilePicker]'
+  selector: '[ngFilePicker]'
 })
 export class FilePickerDirective implements OnInit {
   @Output()
