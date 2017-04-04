@@ -1,0 +1,21 @@
+{
+  "name": "angular-file-picker",
+  "version": "0.0.0",
+  "description": "A simple file picker for Angular",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fvilers/angular-file-picker.git"
+  },
+  "keywords": [
+    "angular",
+    "directive",
+    "file",
+    "picker"
+  ],
+  "author": "Fabian Vilers <fabian.vilers@dev-one.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/fvilers/angular-file-picker/issues"
+  },
+  "homepage": "https://github.com/fvilers/angular-file-picker#readme"
+}
