@@ -34,8 +34,26 @@ export class AppModule {
 }
 ```
 
-Add the file picker directive to an element like a button.
+Add the file picker directive to an element, like a button.
+
+```
+<button type="button" ngFilePicker>Browse</button>
+```
+
+Bind to the `filePick` event to get the picked file from the `$event` variable.
 
 ```
 <button type="button" ngFilePicker (filePick)="file = $event">Browse</button>
+```
+
+The picked file implements the following interface:
+
+```
+export interface PickedFile {
+  lastModifiedDate: Date;
+  name: string;
+  size: number;
+  type: string;
+  dataURL: string;
+}
 ```
