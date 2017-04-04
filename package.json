@@ -1,6 +1,6 @@
 {
   "name": "angular-file-picker",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "A simple file picker for Angular",
   "scripts": {
     "clean": "rimraf aot && rimraf dist",
