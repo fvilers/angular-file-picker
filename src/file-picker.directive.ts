@@ -7,7 +7,7 @@ export class FilePickerDirective implements OnInit {
   @Output()
   public filePick = new EventEmitter();
   
-  private input;
+  private input: any;
 
   constructor(private el: ElementRef, private renderer: Renderer) {
   }
@@ -17,7 +17,7 @@ export class FilePickerDirective implements OnInit {
     this.renderer.setElementAttribute(this.input, 'type', 'file');
     this.renderer.setElementStyle(this.input, 'display', 'none');
 
-    this.renderer.listen(this.input, 'change', event => {
+    this.renderer.listen(this.input, 'change', (event: any) => {
       this.filePick.emit(event.target.files[0]);
     });
   }
