@@ -2,6 +2,7 @@ import {
   Directive,
   ElementRef,
   EventEmitter,
+  Input,
   HostListener,
   OnInit,
   Output,
@@ -15,6 +16,9 @@ import { PickedFileImpl } from './picked-file-impl';
   selector: '[ngFilePicker]'
 })
 export class FilePickerDirective implements OnInit {
+  @Input()
+  public accept = '';
+
   @Output()
   public filePick = new EventEmitter<PickedFile>();
   
@@ -26,6 +30,7 @@ export class FilePickerDirective implements OnInit {
   ngOnInit() {
     this.input = this.renderer.createElement(this.el.nativeElement.parentNode, 'input');
     this.renderer.setElementAttribute(this.input, 'type', 'file');
+    this.renderer.setElementAttribute(this.input, 'accept', this.accept);
     this.renderer.setElementStyle(this.input, 'display', 'none');
 
     this.renderer.listen(this.input, 'change', (event: any) => {
