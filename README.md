@@ -46,10 +46,16 @@ Bind to the `filePick` event to get the picked file from the `$event` variable.
 <button type="button" ngFilePicker (filePick)="file = $event">Browse</button>
 ```
 
+Use the `accept` attribute to define the types of files that the component can select.
+
+```
+<button type="button" ngFilePicker accept="image/*" (filePick)="file = $event">Browse</button>
+```
+
 The picked file implements the following interface:
 
 ```
-export interface PickedFile {
+interface PickedFile {
   lastModifiedDate: Date;
   name: string;
   size: number;
@@ -57,3 +63,5 @@ export interface PickedFile {
   dataURL: string;
 }
 ```
+
+There's a complete demonstration available on [Plunker](https://embed.plnkr.co/RRf82snZfOYVI7EN5NN6/).
