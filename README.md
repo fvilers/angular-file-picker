@@ -1,14 +1,17 @@
 # angular-file-picker
 A simple file picker for Angular
 
-# Installation
+## Quick links
+[API Reference](https://github.com/fvilers/angular-file-picker/wiki), [Plunker demo](https://embed.plnkr.co/RRf82snZfOYVI7EN5NN6/), [npmjs](https://www.npmjs.com/package/angular-file-picker).
+
+## Installation
 Add the package to your application.
 
 ```
 npm install --save angular-file-picker
 ```
 
-# Usage
+## Getting started
 
 Import the file picker module to your angular module.
 
@@ -74,5 +77,3 @@ interface PickedFile {
   dataURL: string;
 }
 ```
-
-There's a complete demonstration available on [Plunker](https://embed.plnkr.co/RRf82snZfOYVI7EN5NN6/).
