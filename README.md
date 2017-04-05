@@ -43,13 +43,24 @@ Add the file picker directive to an element, like a button.
 Bind to the `filePick` event to get the picked file from the `$event` variable.
 
 ```
-<button type="button" ngFilePicker (filePick)="file = $event">Browse</button>
+<button
+  type="button"
+  ngFilePicker
+  (filePick)="file = $event">
+  Browse
+</button>
 ```
 
 Use the `accept` attribute to define the types of files that the component can select.
 
 ```
-<button type="button" ngFilePicker accept="image/*" (filePick)="file = $event">Browse</button>
+<button
+  type="button"
+  ngFilePicker
+  accept="image/*"
+  (filePick)="file = $event">
+  Browse
+</button>
 ```
 
 The picked file implements the following interface:
