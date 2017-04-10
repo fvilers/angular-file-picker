@@ -3,7 +3,7 @@
   "version": "1.1.0",
   "description": "A simple file picker for Angular",
   "scripts": {
-    "clean": "rimraf aot && rimraf dist",
+    "clean": "rimraf dist",
     "transpile": "ngc",
     "package": "rollup -c",
     "minify": "uglifyjs dist/bundles/file-picker.umd.js --screw-ie8 --compress --mangle --comments --output dist/bundles/file-picker.umd.min.js",
