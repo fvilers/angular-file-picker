@@ -77,3 +77,6 @@ interface PickedFile {
   dataURL: string;
 }
 ```
+
+## Note
+If you liked the `angular-file-picker` directive, you should have a look at the [angular-file-dropzone](https://github.com/fvilers/angular-file-dropzone).
