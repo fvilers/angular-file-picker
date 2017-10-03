@@ -45,10 +45,6 @@ export class FilePickerDirective implements OnInit {
     }
 
     this.renderer.listen(this.input, 'change', (event: any) => {
-      if (event.target.files.length < 1) {
-        return;
-      }
-
       for (let file of event.target.files) {
         this.readFile(file);
       }
