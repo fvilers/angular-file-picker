@@ -19,9 +19,14 @@ export class FilePickerDirective implements OnInit {
   @Input()
   public accept = '';
 
+  @Input()
+  get multiple() { return this._multiple; }
+  set multiple(value: any) { this._multiple = coerceBooleanProperty(value); }
+
   @Output()
   public filePick = new EventEmitter<PickedFile>();
-  
+
+  private _multiple: boolean;
   private input: any;
 
   constructor(private el: ElementRef, private renderer: Renderer) {
@@ -33,12 +38,18 @@ export class FilePickerDirective implements OnInit {
     this.renderer.setElementAttribute(this.input, 'accept', this.accept);
     this.renderer.setElementStyle(this.input, 'display', 'none');
 
+    if (this.multiple) {
+      this.renderer.setElementAttribute(this.input, 'multiple', 'multiple');
+    }
+
     this.renderer.listen(this.input, 'change', (event: any) => {
       if (event.target.files.length < 1) {
         return;
       }
-      
-      this.readFile(event.target.files[0]);
+
+      for (let file of event.target.files) {
+        this.readFile(file);
+      }
     });
   }
 
@@ -53,10 +64,14 @@ export class FilePickerDirective implements OnInit {
     reader.onload = (loaded: ProgressEvent) => {
       const fileReader = loaded.target as FileReader;
       const pickedFile = new PickedFileImpl(file.lastModifiedDate, file.name, file.size, file.type, fileReader.result);
-      
+
       this.filePick.emit(pickedFile);
     };
 
     reader.readAsDataURL(file);
   }
+}
+
+function coerceBooleanProperty(value: any): boolean {
+  return value != null && `${value}` !== 'false';
 }
