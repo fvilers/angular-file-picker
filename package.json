@@ -8,7 +8,9 @@
     "package": "rollup -c",
     "minify": "uglifyjs dist/bundles/file-picker.umd.js --screw-ie8 --compress --mangle --comments --output dist/bundles/file-picker.umd.min.js",
     "dist": "node tools/dist",
-    "build": "npm run clean && npm run transpile && npm run package && npm run minify && npm run dist"
+    "build": "npm run clean && npm run transpile && npm run package && npm run minify && npm run dist",
+    "version": "npm run build",
+    "postversion": "git push && git push --tags"
   },
   "repository": {
     "type": "git",
