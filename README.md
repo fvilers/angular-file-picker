@@ -54,13 +54,26 @@ Bind to the `filePick` event to get the picked file from the `$event` variable.
 </button>
 ```
 
-Use the `accept` attribute to define the types of files that the component can select.
+Use the optional `accept` attribute to indicate the types of files that the control can select.
 
 ```
 <button
   type="button"
   ngFilePicker
   accept="image/*"
+  (filePick)="file = $event">
+  Browse
+</button>
+```
+
+Use the optional `multiple` attribute to indicate whether the user can pick more than one file.
+
+```
+<button
+  type="button"
+  ngFilePicker
+  accept="image/*"
+  multiple
   (filePick)="file = $event">
   Browse
 </button>
