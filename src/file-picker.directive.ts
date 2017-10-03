@@ -6,7 +6,7 @@ import {
   HostListener,
   OnInit,
   Output,
-  Renderer
+  Renderer2
 } from '@angular/core';
 
 import { PickedFile } from './picked-file';
@@ -29,17 +29,19 @@ export class FilePickerDirective implements OnInit {
   private _multiple: boolean;
   private input: any;
 
-  constructor(private el: ElementRef, private renderer: Renderer) {
+  constructor(private el: ElementRef, private renderer: Renderer2) {
   }
 
   ngOnInit() {
-    this.input = this.renderer.createElement(this.el.nativeElement.parentNode, 'input');
-    this.renderer.setElementAttribute(this.input, 'type', 'file');
-    this.renderer.setElementAttribute(this.input, 'accept', this.accept);
-    this.renderer.setElementStyle(this.input, 'display', 'none');
+    this.input = this.renderer.createElement('input');
+    this.renderer.appendChild(this.el.nativeElement, this.input);
+
+    this.renderer.setAttribute(this.input, 'type', 'file');
+    this.renderer.setAttribute(this.input, 'accept', this.accept);
+    this.renderer.setStyle(this.input, 'display', 'none');
 
     if (this.multiple) {
-      this.renderer.setElementAttribute(this.input, 'multiple', 'multiple');
+      this.renderer.setAttribute(this.input, 'multiple', 'multiple');
     }
 
     this.renderer.listen(this.input, 'change', (event: any) => {
@@ -55,7 +57,7 @@ export class FilePickerDirective implements OnInit {
 
   @HostListener('click')
   browse() {
-    this.renderer.invokeElementMethod(this.input, 'click');
+    this.input.click();
   }
 
   private readFile(file: File) {
