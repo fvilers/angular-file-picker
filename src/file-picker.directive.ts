@@ -32,7 +32,7 @@ export class FilePickerDirective implements OnInit {
   constructor(private el: ElementRef, private renderer: Renderer2) {
   }
 
-  ngOnInit() {
+  public ngOnInit() {
     this.input = this.renderer.createElement('input');
     this.renderer.appendChild(this.el.nativeElement, this.input);
 
@@ -55,8 +55,22 @@ export class FilePickerDirective implements OnInit {
     });
   }
 
+  public reset() {
+    if (!this.input) {
+      console.error('It seems that ngOnInit() has not been executed or that the hidden input element is null. Did you mess with the DOM?');
+      return;
+    }
+
+    this.input.value = null;
+  }
+
   @HostListener('click')
-  browse() {
+  private browse() {
+    if (!this.input) {
+      console.error('It seems that ngOnInit() has not been executed or that the hidden input element is null. Did you mess with the DOM?');
+      return;
+    }
+
     this.input.click();
   }
 
