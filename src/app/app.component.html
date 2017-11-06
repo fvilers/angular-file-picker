@@ -16,5 +16,5 @@
       </figcaption>
     </figure>
   
-    <button mat-raised-button ngFilePicker accept="image/*" (filePick)="picked = $event">Browse</button>
+    <button mat-raised-button ngFilePicker accept="image/*" (filePick)="onFilePicked($event)">Browse</button>
 </main>
