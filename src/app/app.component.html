@@ -5,4 +5,16 @@
 </mat-toolbar>
 
 <main class="mat-typography">
+    <span class="mat-title">Pick an image</span>
+    
+    <figure *ngIf="picked">
+      <img [src]="picked.dataURL">
+      
+      <figcaption>
+        File: <strong>{{picked.name}}</strong><br>
+        {{picked.size}} bytes
+      </figcaption>
+    </figure>
+  
+    <button mat-raised-button ngFilePicker accept="image/*" (filePick)="picked = $event">Browse</button>
 </main>
