@@ -44,6 +44,21 @@ Add the file picker directive to an element, like a button.
 <button type="button" ngFilePicker>Browse</button>
 ```
 
+Select how the file should be read; by default the mode is dataUrl. Available read modes are exposed through the ReadMode enum.
+
+```
+<button type="button" [ngFilePicker]="readMode">Browse</button>
+```
+
+```
+enum ReadMode {
+  arrayBuffer,
+  binaryString,
+  dataURL,
+  text
+}
+```
+
 Bind to the `filePick` event to get the picked file from the `$event` variable.
 
 ```

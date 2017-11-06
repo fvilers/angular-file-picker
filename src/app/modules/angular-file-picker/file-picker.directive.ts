@@ -11,6 +11,7 @@ import {
 
 import { PickedFile } from './picked-file';
 import { PickedFileImpl } from './picked-file-impl';
+import { ReadMode } from './read-mode.enum';
 
 @Directive({
   selector: '[ngFilePicker]'
@@ -22,6 +23,8 @@ export class FilePickerDirective implements OnInit {
   @Input()
   get multiple() { return this._multiple; }
   set multiple(value: any) { this._multiple = coerceBooleanProperty(value); }
+
+  @Input('ngFilePicker') readMode: ReadMode;
 
   @Output()
   public filePick = new EventEmitter<PickedFile>();
@@ -72,15 +75,29 @@ export class FilePickerDirective implements OnInit {
 
   private readFile(file: File) {
     const reader = new FileReader();
-
+    
     reader.onload = (loaded: ProgressEvent) => {
       const fileReader = loaded.target as FileReader;
-      const pickedFile = new PickedFileImpl(file.lastModifiedDate, file.name, file.size, file.type, fileReader.result);
+      const pickedFile = new PickedFileImpl(file.lastModifiedDate, file.name, file.size, file.type, this.readMode, fileReader.result);
 
       this.filePick.emit(pickedFile);
     };
-
-    reader.readAsDataURL(file);
+    
+    switch (this.readMode) {
+      case ReadMode.arrayBuffer:
+        reader.readAsArrayBuffer(file);
+        break;
+      case ReadMode.binaryString:
+        reader.readAsBinaryString(file);
+        break;
+      case ReadMode.text:
+        reader.readAsText(file);
+        break;
+      case ReadMode.dataURL:
+      default:
+        reader.readAsDataURL(file);
+        break;
+    }
   }
 }
 
