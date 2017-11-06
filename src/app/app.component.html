@@ -1,0 +1,20 @@
+<mat-toolbar color="primary">
+  <h1>Angular File Picker Demo</h1>
+  <span class="filler"></span>
+  <a href="https://github.com/fvilers/angular-file-picker" mat-button>GitHub</a>
+</mat-toolbar>
+
+<main class="mat-typography">
+    <span class="mat-title">Pick an image</span>
+    
+    <figure *ngIf="picked">
+      <img [src]="picked.dataURL">
+      
+      <figcaption>
+        File: <strong>{{picked.name}}</strong><br>
+        {{picked.size}} bytes
+      </figcaption>
+    </figure>
+  
+    <button mat-raised-button ngFilePicker accept="image/*" (filePick)="onFilePicked($event)">Browse</button>
+</main>
