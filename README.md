@@ -2,7 +2,8 @@
 A simple file picker for Angular
 
 ## Quick links
-[API Reference](https://github.com/fvilers/angular-file-picker/wiki/api-reference), [Plunker demo](https://embed.plnkr.co/RRf82snZfOYVI7EN5NN6/).
+- [API Reference](https://github.com/fvilers/angular-file-picker/wiki/api-reference)
+- [Demo](https://fvilers.github.io/angular-file-picker/index.html)
 
 ## Installation
 Add the package to your application.
