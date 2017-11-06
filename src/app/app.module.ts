@@ -5,10 +5,12 @@ import { MatButtonModule, MatToolbarModule } from '@angular/material';
 import { AngularFilePickerModule } from './modules/angular-file-picker';
 
 import { AppComponent } from './app.component';
+import { ReadModePipe } from './read-mode.pipe';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ReadModePipe
   ],
   imports: [
     BrowserModule,

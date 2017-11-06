@@ -8,13 +8,14 @@
     <span class="mat-title">Pick an image</span>
     
     <figure *ngIf="picked">
-      <img [src]="picked.dataURL">
+      <img [src]="picked.content">
       
       <figcaption>
         File: <strong>{{picked.name}}</strong><br>
-        {{picked.size}} bytes
+        {{picked.size}} bytes<br />
+        Read as {{picked.readMode | readMode}}
       </figcaption>
     </figure>
   
-    <button mat-raised-button ngFilePicker accept="image/*" (filePick)="onFilePicked($event)">Browse</button>
+    <button mat-raised-button [ngFilePicker]="readMode" accept="image/*" (filePick)="onFilePicked($event)">Browse</button>
 </main>

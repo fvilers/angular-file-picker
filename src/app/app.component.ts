@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { PickedFile } from './modules/angular-file-picker';
+import { PickedFile, ReadMode } from './modules/angular-file-picker';
 
 @Component({
   selector: 'app-root',
@@ -8,6 +8,7 @@ import { PickedFile } from './modules/angular-file-picker';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  public readMode = ReadMode.dataURL;
   public picked: PickedFile;
 
   onFilePicked(file: PickedFile) {
