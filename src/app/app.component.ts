@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { PickedFile, ReadMode } from './modules/angular-file-picker';
+import { PickedFile, ReadMode } from '../lib';
 
 @Component({
   selector: 'app-root',

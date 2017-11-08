@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
-import { ReadMode } from './modules/angular-file-picker';
+import { ReadMode } from '../lib';
 
 @Pipe({
   name: 'readMode'
