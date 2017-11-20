@@ -48,7 +48,7 @@ export class FilePickerDirective implements OnInit {
     }
 
     this.renderer.listen(this.input, 'change', (event: any) => {
-      for (let file of event.target.files) {
+      for (const file of event.target.files) {
         this.readFile(file);
       }
     });
@@ -75,14 +75,14 @@ export class FilePickerDirective implements OnInit {
 
   private readFile(file: File) {
     const reader = new FileReader();
-    
+
     reader.onload = (loaded: ProgressEvent) => {
       const fileReader = loaded.target as FileReader;
       const pickedFile = new PickedFileImpl(file.lastModifiedDate, file.name, file.size, file.type, this.readMode, fileReader.result);
 
       this.filePick.emit(pickedFile);
     };
-    
+
     switch (this.readMode) {
       case ReadMode.arrayBuffer:
         reader.readAsArrayBuffer(file);
