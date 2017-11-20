@@ -10,8 +10,17 @@ import { PickedFile, ReadMode } from '../lib';
 export class AppComponent {
   public readMode = ReadMode.dataURL;
   public picked: PickedFile;
+  public status: string;
+
+  onReadStart(fileCount: number) {
+    this.status = `Reading ${fileCount} file(s).`;
+  }
 
   onFilePicked(file: PickedFile) {
     this.picked = file;
+  }
+
+  onReadEnd(fileCount: number) {
+    this.status = `Read ${fileCount} file(s).`;
   }
 }

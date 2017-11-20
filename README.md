@@ -109,5 +109,11 @@ interface PickedFile {
 
 The directive also has a `reset()` method that unset the selected file. This is useful if you want to force the `filePick` event to trigger again even if the user has picked the same file.
 
+There are two more events that can be listened to:
+- `readStart`: triggered when the directive start to read files;
+- `readEnd`: triggered when the directive has read all the files.
+
+These two events emit the number of file (`$event` variable) to be or that has been read.
+
 ## Note
 If you liked the `angular-file-picker` directive, you should have a look at the [angular-file-dropzone](https://github.com/fvilers/angular-file-dropzone).

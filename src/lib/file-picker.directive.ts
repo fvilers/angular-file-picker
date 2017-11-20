@@ -29,6 +29,12 @@ export class FilePickerDirective implements OnInit {
   @Output()
   public filePick = new EventEmitter<PickedFile>();
 
+  @Output()
+  public readStart = new EventEmitter<number>();
+
+  @Output()
+  public readEnd = new EventEmitter<number>();
+
   private _multiple: boolean;
   private input: any;
 
@@ -48,9 +54,11 @@ export class FilePickerDirective implements OnInit {
     }
 
     this.renderer.listen(this.input, 'change', (event: any) => {
-      for (const file of event.target.files) {
-        this.readFile(file);
-      }
+      const fileCount = event.target.files.length;
+
+      this.readStart.emit(event.target.files.length);
+      Promise.all(Array.from<File>(event.target.files).map(file => this.readFile(file)))
+        .then(() => this.readEnd.emit(fileCount));
     });
   }
 
@@ -73,31 +81,34 @@ export class FilePickerDirective implements OnInit {
     this.input.click();
   }
 
-  private readFile(file: File) {
-    const reader = new FileReader();
+  private readFile(file: File): Promise<void> {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
 
-    reader.onload = (loaded: ProgressEvent) => {
-      const fileReader = loaded.target as FileReader;
-      const pickedFile = new PickedFileImpl(file.lastModifiedDate, file.name, file.size, file.type, this.readMode, fileReader.result);
+      reader.onload = (loaded: ProgressEvent) => {
+        const fileReader = loaded.target as FileReader;
+        const pickedFile = new PickedFileImpl(file.lastModifiedDate, file.name, file.size, file.type, this.readMode, fileReader.result);
 
-      this.filePick.emit(pickedFile);
-    };
+        this.filePick.emit(pickedFile);
+        resolve();
+      };
 
-    switch (this.readMode) {
-      case ReadMode.arrayBuffer:
-        reader.readAsArrayBuffer(file);
-        break;
-      case ReadMode.binaryString:
-        reader.readAsBinaryString(file);
-        break;
-      case ReadMode.text:
-        reader.readAsText(file);
-        break;
-      case ReadMode.dataURL:
-      default:
-        reader.readAsDataURL(file);
-        break;
-    }
+      switch (this.readMode) {
+        case ReadMode.arrayBuffer:
+          reader.readAsArrayBuffer(file);
+          break;
+        case ReadMode.binaryString:
+          reader.readAsBinaryString(file);
+          break;
+        case ReadMode.text:
+          reader.readAsText(file);
+          break;
+        case ReadMode.dataURL:
+        default:
+          reader.readAsDataURL(file);
+          break;
+      }
+    });
   }
 }
 

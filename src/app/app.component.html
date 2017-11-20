@@ -5,17 +5,21 @@
 </mat-toolbar>
 
 <main class="mat-typography">
-    <span class="mat-title">Pick an image</span>
-    
-    <figure *ngIf="picked">
-      <img [src]="picked.content">
-      
-      <figcaption>
-        File: <strong>{{picked.name}}</strong><br>
-        {{picked.size}} bytes<br />
-        Read as {{picked.readMode | readMode}}
-      </figcaption>
-    </figure>
-  
-    <button mat-raised-button [ngFilePicker]="readMode" accept="image/*" (filePick)="onFilePicked($event)">Browse</button>
+  <span class="mat-title">Pick an image</span>
+  <br>
+  <span>{{status}}</span>
+
+  <figure *ngIf="picked">
+    <img [src]="picked.content">
+
+    <figcaption>
+      File:
+      <strong>{{picked.name}}</strong>
+      <br> {{picked.size}} bytes
+      <br /> Read as {{picked.readMode | readMode}}
+    </figcaption>
+  </figure>
+
+  <button mat-raised-button [ngFilePicker]="readMode" multiple accept="image/*" (readStart)="onReadStart($event)" (filePick)="onFilePicked($event)"
+    (readEnd)="onReadEnd($event)">Browse</button>
 </main>
