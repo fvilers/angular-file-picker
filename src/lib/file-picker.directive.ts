@@ -29,6 +29,9 @@ export class FilePickerDirective implements OnInit {
   @Output()
   public filePick = new EventEmitter<PickedFile>();
 
+  @Output()
+  public readStart = new EventEmitter<number>();
+
   private _multiple: boolean;
   private input: any;
 
@@ -48,6 +51,10 @@ export class FilePickerDirective implements OnInit {
     }
 
     this.renderer.listen(this.input, 'change', (event: any) => {
+      if (this.multiple) {
+        this.readStart.emit(event.target.files.length);
+      }
+
       for (const file of event.target.files) {
         this.readFile(file);
       }
