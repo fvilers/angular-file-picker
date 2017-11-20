@@ -19,4 +19,8 @@ export class AppComponent {
   onFilePicked(file: PickedFile) {
     this.picked = file;
   }
+
+  onReadEnd(fileCount: number) {
+    this.status = `Read ${fileCount} file(s).`;
+  }
 }

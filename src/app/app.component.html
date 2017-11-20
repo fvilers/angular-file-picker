@@ -20,5 +20,6 @@
     </figcaption>
   </figure>
 
-  <button mat-raised-button [ngFilePicker]="readMode" multiple accept="image/*" (readStart)="onReadStart($event)" (filePick)="onFilePicked($event)">Browse</button>
+  <button mat-raised-button [ngFilePicker]="readMode" multiple accept="image/*" (readStart)="onReadStart($event)" (filePick)="onFilePicked($event)"
+    (readEnd)="onReadEnd($event)">Browse</button>
 </main>
