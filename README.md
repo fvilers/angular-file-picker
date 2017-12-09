@@ -21,14 +21,14 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { FilePickerModule } from 'angular-file-picker';
+import { AngularFilePickerModule } from 'angular-file-picker';
 
 @NgModule({
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    FilePickerModule
+    AngularFilePickerModule
   ],
   declarations: [AppComponent],
   providers: [],
