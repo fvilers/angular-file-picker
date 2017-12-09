@@ -109,6 +109,20 @@ interface PickedFile {
 
 The directive also has a `reset()` method that unset the selected file. This is useful if you want to force the `filePick` event to trigger again even if the user has picked the same file.
 
+```
+export class MyComponent {
+  ...
+  @ViewChild(FilePickerDirective)
+  private filePicker;
+  ...
+
+  onReadEnd(fileCount: number) {
+    this.status = `Read ${fileCount} file(s) on ${new Date().toLocaleTimeString()}.`;
+    this.filePicker.reset();
+  }
+}
+```
+
 There are two more events that can be listened to:
 - `readStart`: triggered when the directive start to read files;
 - `readEnd`: triggered when the directive has read all the files.
