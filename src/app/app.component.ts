@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 
-import { PickedFile, ReadMode } from '../lib';
+import { FilePickerDirective, PickedFile, ReadMode } from '../lib';
 
 @Component({
   selector: 'app-root',
@@ -12,6 +12,9 @@ export class AppComponent {
   public picked: PickedFile;
   public status: string;
 
+  @ViewChild(FilePickerDirective)
+  private filePicker;
+
   onReadStart(fileCount: number) {
     this.status = `Reading ${fileCount} file(s).`;
   }
@@ -21,6 +24,7 @@ export class AppComponent {
   }
 
   onReadEnd(fileCount: number) {
-    this.status = `Read ${fileCount} file(s).`;
+    this.status = `Read ${fileCount} file(s) on ${new Date().toLocaleTimeString()}.`;
+    this.filePicker.reset();
   }
 }
